@@ -1,0 +1,12 @@
+apply plugin: 'node'
+apply plugin: 'gulp'
+
+task bower(dependsOn: 'npmInstall', type: NodeTask){
+    script = file('node_modules/bower/bin/bower')
+    args = ['install']
+}
+
+gulp_build.dependsOn 'npmInstall'
+gulp_build.dependsOn 'bower'
+processResources.dependsOn gulp_build
+test.dependsOn gulp_test
